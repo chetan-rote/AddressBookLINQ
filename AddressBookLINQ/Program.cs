@@ -25,7 +25,8 @@ namespace AddressBookLINQ
             while (loop == 1)
             {
                 Console.WriteLine("Make choice according to your desired operation \n1.Display Address book " +
-                    "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Retrieve contacts by city \n6. Retrieve Contacts by state \n7. Exit");
+                    "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Retrieve contacts by city " +
+                    "\n6. Retrieve Contacts by state \n7. Retrieve count of contacts by city and state \n8. Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -89,6 +90,9 @@ namespace AddressBookLINQ
                         addressBookRepo.RetrieveContactsByState(state);
                         break;
                     case 7:
+                        addressBookRepo.CountByCityAndState();
+                        break;
+                    case 8:
                         loop = 0;
                         break;
                 }

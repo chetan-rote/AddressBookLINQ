@@ -88,7 +88,7 @@ namespace AddressBookLINQ
             }
         }
         /// <summary>
-        /// Delete contact from table
+        /// UC5 Delete contact from table
         /// </summary>
         /// <param name="name"></param>
         public void DeleteContact(string name)
@@ -101,7 +101,7 @@ namespace AddressBookLINQ
             }
         }
         /// <summary>
-        /// Retrieve contacts of a particular city
+        /// UC6 Retrieve contacts of a particular city
         /// </summary>
         /// <param name="city"></param>
         public void RetrieveContactsByCity(string city)
@@ -117,7 +117,7 @@ namespace AddressBookLINQ
             }
         }
         /// <summary>
-        /// Retrieves contact of a particular state
+        /// UC6 Retrieves contact of a particular state
         /// </summary>
         /// <param name="state"></param>
         public void RetrieveContactsByState(string state)
@@ -130,6 +130,24 @@ namespace AddressBookLINQ
                     Console.Write(row[col] + " ");
                 }
                 Console.WriteLine();
+            }
+        }
+        /// <summary>
+        /// UC7 Displays count of contacts city and state wise
+        /// </summary>
+        public void CountByCityAndState()
+        {
+            var countByCityAndState = from row in dataTable.AsEnumerable()
+                                      group row by new { City = row.Field<string>("City"), State = row.Field<string>("State") } into grp
+                                      select new
+                                      {
+                                          City = grp.Key.City,
+                                          State = grp.Key.State,
+                                          Count = grp.Count()
+                                      };
+            foreach (var row in countByCityAndState)
+            {
+                Console.WriteLine(row.City + "\t" + row.State + "\t" + row.Count);
             }
         }
     }

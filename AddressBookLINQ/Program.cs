@@ -24,7 +24,8 @@ namespace AddressBookLINQ
             addressBookRepo.CreateDataTable();
             while (loop == 1)
             {
-                Console.WriteLine("Make choice according to your desired operation \n1.Display Address book \n2. Insert Contact \n3. Edit Contact \n4. Exit");
+                Console.WriteLine("Make choice according to your desired operation \n1.Display Address book " +
+                    "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -73,6 +74,11 @@ namespace AddressBookLINQ
                         addressBookRepo.EditContact(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
                         break;
                     case 4:
+                        Console.WriteLine("Enter FirstName of contact to be deleted");
+                        string name = Console.ReadLine();
+                        addressBookRepo.DeleteContact(name);
+                        break;
+                    case 5:
                         loop = 0;
                         break;
                 }

@@ -151,7 +151,7 @@ namespace AddressBookLINQ
             }
         }
         /// <summary>
-        /// Retrieves Contacts alphabetically in a city
+        /// UC8 Retrieves Contacts alphabetically in a city
         /// </summary>
         /// <param name="city"></param>
         public void SortContactsAlphabeticalyForACity(string city)
@@ -161,7 +161,7 @@ namespace AddressBookLINQ
             {
                 foreach (DataColumn column in dataTable.Columns)
                 {
-                    Console.Write(row[column] + "\t");
+                    Console.Write(row[column] + " ");
                 }
                 Console.WriteLine();
             }

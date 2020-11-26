@@ -97,7 +97,7 @@ namespace AddressBookLINQ
                         Console.WriteLine("Enter City");
                         string cityName = Console.ReadLine();
                         addressBookRepo.SortContactsAlphabeticalyForACity(cityName);
-                        break;
+                        break;                   
                     case 9:
                         loop = 0;
                         break;

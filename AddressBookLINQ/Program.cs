@@ -56,7 +56,8 @@ namespace AddressBookLINQ
                         addressBookRepo.InsertContacts(contact);
                         break;
                     case 3:
-                        Console.WriteLine("Enter the person details to be added in the address book");
+                        Contact contacts = new Contact();
+                        Console.WriteLine("Enter the person details to be updated in the address book");
                         Console.WriteLine("First Name");
                         string FirstName = Console.ReadLine();
                         Console.WriteLine("Last Name");
@@ -73,7 +74,7 @@ namespace AddressBookLINQ
                         string PhoneNumber = Console.ReadLine();
                         Console.WriteLine("Email");
                         string Email = Console.ReadLine();
-                        addressBookRepo.EditContact(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
+                        addressBookRepo.EditContact(contacts);
                         break;
                     case 4:
                         Console.WriteLine("Enter FirstName of contact to be deleted");

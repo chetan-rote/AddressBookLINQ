@@ -68,18 +68,17 @@ namespace AddressBookLINQ
         /// <param name="zipcode"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
-        public void EditContact(string firstName, string lastName, string address, string city, string state, string zipcode, string phoneNumber, string email)
+        public void EditContact(Contact contact)
         {
-            var recordedData = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName") == firstName).FirstOrDefault();
+            var recordedData = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName") == contact.FirstName).FirstOrDefault();
             if (recordedData != null)
             {
-                recordedData.SetField("LastName", lastName);
-                recordedData.SetField("Address", address);
-                recordedData.SetField("City", city);
-                recordedData.SetField("State", state);
-                recordedData.SetField("ZipCode", zipcode);
-                recordedData.SetField("EmailID", email);
-                recordedData.SetField("State", state);
+                recordedData.SetField("LastName", contact.LastName);
+                recordedData.SetField("Address", contact.Address);
+                recordedData.SetField("City", contact.City);
+                recordedData.SetField("State", contact.State);
+                recordedData.SetField("ZipCode", contact.ZipCode);
+                recordedData.SetField("EmailID", contact.Email);
                 Console.WriteLine("Contact edited successfully");
             }
             else

@@ -5,7 +5,7 @@ using System.Text;
 namespace AddressBookLINQ
 {
     public class Contact
-    {
+    {       
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -39,6 +39,11 @@ namespace AddressBookLINQ
             this.ZipCode = ZipCode;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
+        }
+        override
+        public string ToString()
+        {
+            return $"First Name: {FirstName}, Last Name: {LastName}, Address: {Address}, City: {City}, State: {State}, Zip: {ZipCode}, MobileNumber: {PhoneNumber}, Email: {Email}";
         }
     }
 }

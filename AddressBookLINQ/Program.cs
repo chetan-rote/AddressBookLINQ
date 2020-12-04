@@ -27,7 +27,8 @@ namespace AddressBookLINQ
                 Console.WriteLine("Make choice according to your desired operation \n1.Display Address book " +
                     "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Retrieve contacts by city " +
                     "\n6. Retrieve Contacts by state \n7. Retrieve count of contacts by city and state " +
-                    "\n8. Display contacts alphabetically for a city \n9. Exit");
+                    "\n8. Display contacts sorted alphabetically for a city. \n9. Display contacts sorted alphabetically" +
+                    " for a state. \n10. Display contacts by sorted zipcode. \n11. Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -74,7 +75,7 @@ namespace AddressBookLINQ
                         string PhoneNumber = Console.ReadLine();
                         Console.WriteLine("Email");
                         string Email = Console.ReadLine();
-                        addressBookRepo.EditContact(contacts);
+                        addressBookRepo.EditContact(contacts, FirstName);
                         break;
                     case 4:
                         Console.WriteLine("Enter FirstName of contact to be deleted");
@@ -98,8 +99,18 @@ namespace AddressBookLINQ
                         Console.WriteLine("Enter City");
                         string cityName = Console.ReadLine();
                         addressBookRepo.SortContactsAlphabeticalyForACity(cityName);
-                        break;                   
+                        break;
                     case 9:
+                        Console.WriteLine("Enter State");
+                        string stateName = Console.ReadLine();
+                        addressBookRepo.SortContactsAlphabeticallyForState(stateName);
+                        break;
+                    case 10:
+                        Console.WriteLine("Enter ZipCode");
+                        string zipCode = Console.ReadLine();
+                        addressBookRepo.SortContactsByZipcode(zipCode);
+                        break;
+                    case 11:
                         loop = 0;
                         break;
                 }

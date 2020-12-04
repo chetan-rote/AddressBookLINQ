@@ -68,9 +68,9 @@ namespace AddressBookLINQ
         /// <param name="zipcode"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
-        public void EditContact(Contact contact)
+        public void EditContact(Contact contact, string firstName)
         {
-            var recordedData = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName") == contact.FirstName).FirstOrDefault();
+            var recordedData = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName") == firstName).FirstOrDefault();
             if (recordedData != null)
             {
                 recordedData.SetField("LastName", contact.LastName);
@@ -161,6 +161,38 @@ namespace AddressBookLINQ
                 foreach (DataColumn column in dataTable.Columns)
                 {
                     Console.Write(row[column] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /// <summary>
+        /// Retrieves Contacts sorted alphabetically for given state.
+        /// </summary>
+        /// <param name="state"></param>
+        public void SortContactsAlphabeticallyForState(string state)
+        {
+            var records = dataTable.AsEnumerable().Where(sortedState => sortedState.Field<string>("state") == state).OrderBy(firstName => firstName.Field<string>("FirstName")).ThenBy(lastName => lastName.Field<string>("LastName"));
+            foreach (DataRow row in records)
+            {
+                foreach (DataColumn dataColumn in dataTable.Columns)
+                {
+                    Console.WriteLine(row[dataColumn] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /// <summary>
+        /// Retrieves the contacts sorted for given zipcode.
+        /// </summary>
+        /// <param name="zipCode"></param>
+        public void SortContactsByZipcode(string zipCode)
+        { 
+            var records = dataTable.AsEnumerable().Where(sort => sort.Field<string>("zipCode") == zipCode).OrderBy(firstName => firstName.Field<string>("FirstName")).ThenBy(lastName => lastName.Field<string>("LastName"));
+            foreach (DataRow dataRow in records)
+            {
+                foreach (DataColumn dataColumn in dataTable.Columns)
+                {
+                    Console.WriteLine(dataRow[dataColumn] + " ");
                 }
                 Console.WriteLine();
             }

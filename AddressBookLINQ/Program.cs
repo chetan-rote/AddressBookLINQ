@@ -7,11 +7,14 @@
  *  @since   26-11-2020
  ****************************************************************/
 using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace AddressBookLINQ
 {
     class Program
     {
+        public static List<Contact> list = new List<Contact>();
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
@@ -20,15 +23,17 @@ namespace AddressBookLINQ
         {
             Console.WriteLine("Welcome to Address Book using LINQ.");
             AddressBookRepo addressBookRepo = new AddressBookRepo();
+            addressBookRepo.ContactList();
+            TextFileStream textFile = new TextFileStream();
             int loop = 1;
-            addressBookRepo.CreateDataTable();
+            //addressBookRepo.CreateDataTable();
             while (loop == 1)
             {
                 Console.WriteLine("Make choice according to your desired operation \n1.Display Address book " +
                     "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Retrieve contacts by city " +
                     "\n6. Retrieve Contacts by state \n7. Retrieve count of contacts by city and state " +
                     "\n8. Display contacts sorted alphabetically for a city. \n9. Display contacts sorted alphabetically" +
-                    " for a state. \n10. Display contacts by sorted zipcode. \n11. Exit");
+                    " for a state. \n10. Display contacts by sorted zipcode. \n11. Write txt file. \n12. Read txt file. \n13. Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -111,6 +116,12 @@ namespace AddressBookLINQ
                         addressBookRepo.SortContactsByZipcode(zipCode);
                         break;
                     case 11:
+                        textFile.WriteFile(list);
+                        break;
+                    case 12:
+                        textFile.ReadFile();
+                        break;
+                    case 13:
                         loop = 0;
                         break;
                 }

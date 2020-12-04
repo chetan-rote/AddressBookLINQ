@@ -11,11 +11,10 @@ namespace AddressBookLINQ
         /// <summary>
         /// UC1 The data table
         /// </summary>
-        DataTable dataTable = new DataTable();
-        /// <summary>
-        /// UC2 Creates the data table.
-        /// </summary>
-        public void CreateDataTable()
+        public DataTable dataTable = new DataTable();
+        List<Contact> contactList = new List<Contact>();
+        
+        public void ContactList()
         {
             dataTable.Columns.Add("FirstName", typeof(string));
             dataTable.Columns.Add("LastName", typeof(string));
@@ -32,21 +31,37 @@ namespace AddressBookLINQ
             dataTable.Rows.Add("Shubham", "Dubey", "Ram Nagar", "Bhopal", "Madhya Pradesh", "652412", "8998965896", "shubham@yahoo.com");
             dataTable.Rows.Add("Aditya", "Saitwal", "NavyNagar", "Bangalore", "Karnataka", "520147", "8659876734", "aditya@gmail.com");
             dataTable.Rows.Add("Durgesh", "Jage", "Ghantali", "Thane", "Maharashtra", "400082", "9756387459", "jage@gmail.com");
-            dataTable.Rows.Add("Omakar", "Yadav", "Rajiv", "Jaipur", "Rajasthan", "600001", "8987224534", "yadav@gmail.com");            
+            dataTable.Rows.Add("Omakar", "Yadav", "Rajiv", "Jaipur", "Rajasthan", "600001", "8987224534", "yadav@gmail.com");
+            contactList = (from DataRow dataRow in dataTable.Rows
+                           select new Contact()
+                           {
+                               FirstName = dataRow["FirstName"].ToString(),
+                               LastName = dataRow["LastName"].ToString(),
+                               Address = dataRow["Address"].ToString(),
+                               City = dataRow["City"].ToString(),
+                               State = dataRow["State"].ToString(),
+                               ZipCode = dataRow["ZipCode"].ToString(),
+                               PhoneNumber = dataRow["PhoneNumber"].ToString(),
+                               Email = dataRow["EmailID"].ToString()
+                           }).ToList();
         }
         /// <summary>
         /// Display address book data table
         /// </summary>
         public void DisplayAddressBook()
         {
-            foreach (DataRow row in dataTable.Rows)
+            foreach (var display in contactList)
             {
-                foreach (DataColumn col in dataTable.Columns)
-                {
-                    Console.Write(row[col]+" ");
-                }
-                Console.WriteLine();
+                Console.WriteLine(display);
             }
+            //foreach (DataRow row in dataTable.Rows)
+            //{
+            //    foreach (DataColumn col in dataTable.Columns)
+            //    {
+            //        Console.Write(row[col] + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
         }
         /// <summary>
         /// Insert Contacts in a the addressBook

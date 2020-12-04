@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -49,6 +51,31 @@ namespace AddressBookLINQ
             else
             {
                 Console.WriteLine("File does not exists.");
+            }
+        }
+
+        public void ReadCSVFile()
+        {
+            string path = @"C:\Users\Chetan\source\repos\AddressBookLINQ\AddressBookLINQ\Files\AddressBook.csv";
+            using (var reader = new StreamReader(path))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.Delimiter = ",";
+                var records = csv.GetRecords<Contact>();
+                foreach (Contact contact in records)
+                {
+                    Console.WriteLine(contact.FirstName, contact.LastName, contact.Address, contact.City, contact.State, contact.PhoneNumber, contact.Email);
+                }
+            }
+        }
+
+        public void WriteCSVFile(List<Contact> contacts)
+        {
+            string path = @"C:\Users\Chetan\source\repos\AddressBookLINQ\AddressBookLINQ\Files\AddressBook.csv";
+            using (var writer = new StreamWriter(path))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(contacts);
             }
         }
     }

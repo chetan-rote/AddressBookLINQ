@@ -33,7 +33,8 @@ namespace AddressBookLINQ
                     "\n2. Insert Contact \n3. Edit Contact \n4. Delete Contact \n5. Retrieve contacts by city " +
                     "\n6. Retrieve Contacts by state \n7. Retrieve count of contacts by city and state " +
                     "\n8. Display contacts sorted alphabetically for a city. \n9. Display contacts sorted alphabetically" +
-                    " for a state. \n10. Display contacts by sorted zipcode. \n11. Write txt file. \n12. Read txt file. \n13. Exit");
+                    " for a state. \n10. Display contacts by sorted zipcode. \n11. Write txt file. \n12. Read txt file. " +
+                    "\n13. Write CSV File. \n14. Read CSV file. \n15. Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -122,6 +123,12 @@ namespace AddressBookLINQ
                         textFile.ReadFile();
                         break;
                     case 13:
+                        textFile.WriteCSVFile(list);
+                        break;
+                    case 14:
+                        textFile.ReadCSVFile();
+                        break;
+                    case 15:
                         loop = 0;
                         break;
                 }

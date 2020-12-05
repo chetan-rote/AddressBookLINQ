@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -13,10 +12,7 @@ namespace AddressBookLINQ
         /// UC1 The data table
         /// </summary>
         public DataTable dataTable = new DataTable();
-        public List<Contact> contactList = new List<Contact>();
-
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AddressBook_DB;Integrated Security=True";
-        SqlConnection connection;
+        List<Contact> contactList = new List<Contact>();
         
         public void ContactList()
         {
@@ -215,62 +211,6 @@ namespace AddressBookLINQ
                 }
                 Console.WriteLine();
             }
-        }
-        /// <summary>
-        /// Retrieves all contacts from database.
-        /// </summary>
-        /// <returns></returns>
-        public bool RetrieveAllContacts()
-        {
-            connection = new SqlConnection(connectionString);
-            try
-            {
-                using (connection)
-                {
-                    /// Impementing the command on the connection fetched database table.
-                    SqlCommand sqlCommand = new SqlCommand("spGetData", this.connection);
-                    /// Opening the connection to start mapping.
-                    this.connection.Open();
-                    /// executing the sql data reader to fetch the records.
-                    SqlDataReader reader = sqlCommand.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            Contact contact = new Contact();
-                            contact.Type = reader.GetString(0);
-                            contact.FirstName = reader.GetString(1);
-                            contact.LastName = reader.GetString(2);
-                            contact.Address = reader.GetString(3);
-                            contact.ZipCode = reader.GetString(4);
-                            contact.PhoneNumber = reader.GetString(5);
-                            contact.Email = reader.GetString(6);
-                            contact.City = reader.GetString(7);
-                            contact.State = reader.GetString(8);
-
-                            contactList.Add(contact);
-
-                            Console.WriteLine(contact.Type + "  " + contact.FirstName + "  " + contact.LastName + "  " + contact.Address + "  " + contact.ZipCode + "  " +
-                                contact.City + "  " + contact.State + "  " + contact.PhoneNumber + "  " + contact.Email);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Table is empty.");
-                    }
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            /// Always ensuring the closing of the connection.
-            finally
-            {
-                connection.Close();
-            }
-            return false;
         }
     }
 }

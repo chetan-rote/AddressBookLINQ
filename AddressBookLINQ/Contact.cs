@@ -14,8 +14,6 @@ namespace AddressBookLINQ
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public string Type { get; set; }
-        public DateTime DateAdded { get; set; }
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -23,31 +21,29 @@ namespace AddressBookLINQ
         /// <summary>
         /// Contact class for storing contact details using parameterised constructor
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="address"></param>
-        /// <param name="city"></param>
-        /// <param name="state"></param>
-        /// <param name="zipCode"></param>
-        /// <param name="phoneNumber"></param>
-        /// <param name="email"></param>
-        public Contact(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNumber, string email, string type, DateTime dateAdded)
+        /// <param name="FirstName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="Address"></param>
+        /// <param name="City"></param>
+        /// <param name="State"></param>
+        /// <param name="ZipCode"></param>
+        /// <param name="PhoneNumber"></param>
+        /// <param name="Email"></param>
+        public Contact(string FirstName, string LastName, string Address, string City, string State, string ZipCode, string PhoneNumber, string Email)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Address = address;
-            this.City = city;
-            this.State = state;
-            this.ZipCode = zipCode;
-            this.PhoneNumber = phoneNumber;
-            this.Email = email;
-            this.Type = type;
-            this.DateAdded = dateAdded;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.Address = Address;
+            this.City = City;
+            this.State = State;
+            this.ZipCode = ZipCode;
+            this.PhoneNumber = PhoneNumber;
+            this.Email = Email;
         }
         override
         public string ToString()
         {
-            return $"First Name: {FirstName}, Last Name: {LastName}, Address: {Address}, City: {City}, State: {State}, Zip: {ZipCode}, MobileNumber: {PhoneNumber}, Email: {Email}, Type: {Type}, DateAdded: {DateAdded}";
+            return $"First Name: {FirstName}, Last Name: {LastName}, Address: {Address}, City: {City}, State: {State}, Zip: {ZipCode}, MobileNumber: {PhoneNumber}, Email: {Email}";
         }
     }
 }
